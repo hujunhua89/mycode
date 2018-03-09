@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.base.modules.seq.mapper.SeqCfgMapper">
+  <resultMap id="BaseResultMap" type="com.example.base.modules.seq.entity.SeqCfg">
+    <id column="seq_name" jdbcType="VARCHAR" property="seqName" />
+    <result column="init_val" jdbcType="INTEGER" property="initVal" />
+    <result column="stock_val" jdbcType="INTEGER" property="stockVal" />
+    <result column="current_val" jdbcType="VARCHAR" property="currentVal" />
+    <result column="increment_val" jdbcType="INTEGER" property="incrementVal" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="init_time" jdbcType="TIMESTAMP" property="initTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    seq_name, init_val, stock_val, current_val, increment_val, status, init_time
+  </sql>
+  <insert id="insertSelective" parameterType="com.example.base.modules.seq.entity.SeqCfg">
+    insert into seq_cfg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seqName != null">
+        seq_name,
+      </if>
+      <if test="initVal != null">
+        init_val,
+      </if>
+      <if test="stockVal != null">
+        stock_val,
+      </if>
+      <if test="currentVal != null">
+        current_val,
+      </if>
+      <if test="incrementVal != null">
+        increment_val,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="initTime != null">
+        init_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seqName != null">
+        #{seqName,jdbcType=VARCHAR},
+      </if>
+      <if test="initVal != null">
+        #{initVal,jdbcType=INTEGER},
+      </if>
+      <if test="stockVal != null">
+        #{stockVal,jdbcType=INTEGER},
+      </if>
+      <if test="currentVal != null">
+        #{currentVal,jdbcType=VARCHAR},
+      </if>
+      <if test="incrementVal != null">
+        #{incrementVal,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="initTime != null">
+        #{initTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.base.modules.seq.entity.SeqCfg">
+    update seq_cfg
+    <set>
+      <if test="initVal != null">
+        init_val = #{initVal,jdbcType=INTEGER},
+      </if>
+      <if test="stockVal != null">
+        stock_val = #{stockVal,jdbcType=INTEGER},
+      </if>
+      <if test="currentVal != null">
+        current_val = #{currentVal,jdbcType=VARCHAR},
+      </if>
+      <if test="incrementVal != null">
+        increment_val = #{incrementVal,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="initTime != null">
+        init_time = #{initTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where seq_name = #{seqName,jdbcType=VARCHAR}
+  </update>
+</mapper>

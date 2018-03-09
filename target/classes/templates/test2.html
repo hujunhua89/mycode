@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Creating non-selectable text using CSS</title>
+<style type="text/css">
+div {
+	margin-bottom: 20px;
+	padding: 10px;
+	background: rgba(10%, 10%, 10%, 0.3);
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+div#d2 {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+	font-style: italic;
+}
+</style>
+</head>
+<body>
+	<div id="d1">[selectable] Lorem ipsum dolor sit amet, consectetur
+		adipiscing elit. Curabitur ornare, urna placerat condimentum vehicula,
+		magna est suscipit leo, auctor laoreet erat massa eget tellus. Etiam
+		pharetra, orci eu gravida tempus, enim est venenatis diam, id
+		facilisis justo ante ut arcu. Sed nibh eros, porta ac porta ac,
+		fermentum ut ante. Etiam pulvinar consectetur urna sit amet fermentum.
+		Aliquam quis pellentesque tortor. In ut lobortis enim. Pellentesque
+		luctus orci nec massa lacinia consectetur. Etiam cursus, leo et
+		pellentesque tempus, diam elit interdum ipsum, sed pulvinar nibh justo
+		vel urna. Phasellus ligula elit, sodales eget aliquet et, ullamcorper
+		ut lorem. Praesent eget quam id ligula iaculis tincidunt eu et nulla.
+		Ut dui dui, dictum sed lobortis eu, porta nec urna. In adipiscing,
+		massa sed scelerisque elementum, tortor massa cursus velit, ut
+		tincidunt mi lacus id magna. Morbi vestibulum venenatis massa sit amet
+		convallis. Aliquam erat volutpat.</div>
+	<div id="d2">[non selectable] Nam a lacus ante, a tincidunt
+		dolor. Sed felis dolor, ullamcorper vitae luctus at, iaculis eu dui.
+		Mauris ullamcorper nisl id tortor elementum mattis. Aenean ut ligula
+		ac ipsum pharetra dapibus. Praesent convallis tincidunt ligula sit
+		amet adipiscing. Morbi massa mauris, mollis ornare mollis ut,
+		imperdiet nec nibh. Praesent sollicitudin tellus at nisl sodales
+		lobortis euismod purus laoreet. Vivamus nec urna vel nibh volutpat
+		rhoncus quis eget justo. Donec mi lacus, dapibus nec tristique eu,
+		fringilla id mi. Maecenas vitae odio a tortor cursus fermentum eu eget
+		eros. Vestibulum sit amet metus purus. Integer vestibulum sem nec
+		justo facilisis tempor non sit amet justo. Lorem ipsum dolor sit amet,
+		consectetur adipiscing elit. Cras eget mattis metus.</div>
+	<div id="d3">[selectable] Proin lacinia sem fringilla est lacinia
+		facilisis. Praesent turpis massa, bibendum eu ultrices ut, viverra
+		vitae quam. Morbi a lorem mi, eget congue arcu. Sed dapibus molestie
+		neque, eget tempus nibh viverra at. Praesent sit amet vestibulum
+		ipsum. Donec in lectus ac urna accumsan feugiat. Sed at nunc felis.
+		Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+		posuere cubilia Curae; Duis nec ipsum justo. Nullam laoreet enim vel
+		quam tincidunt imperdiet. Maecenas sollicitudin nulla a metus ornare
+		tempus. Nullam rhoncus fermentum lorem id pellentesque.</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>helloWord</title>
+<script type="text/javascript" th:src="@{jquery-3.2.1.min.js}"></script>
+<script type="text/javascript">
+	function test() {
+		alert('232');
+		//
+	}
+	$(document).ready(function() {
+		//$.get("http://pingan.tsr.huikefu.com:8080/demo", function(data) {
+		//	jQuery("#name").text(data);
+		//});
+		$.ajax({
+			type : "GET",
+			url : "http://pingan.tsr.huikefu.com:8080/demo",
+			data : "datddd=ffd",
+			xhrFields : {withCredentials:true},
+			success : function(msg) {
+				jQuery("#name").text(msg);
+			}
+		},);
+	});
+</script>
+</head>
+
+<body>
+	<h1>Hello World!</h1>
+	<h1 id="name">test3</h1>
+	<br />
+</body>
+</html>

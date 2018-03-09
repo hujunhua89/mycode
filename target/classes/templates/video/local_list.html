@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" th:href="@{/css/reset.css}">
+<title>helloWord</title>
+<style type="text/css">
+li {
+	cursor: pointer;
+	height: 30px;
+}
+
+ul {
+	margin-top: 10px;
+}
+
+input {
+	height: 25px;
+	width: 30%;
+}
+
+select {
+	width: 18%;
+	height: 25px;
+}
+
+.tops button {
+	height: 25px;
+	width: 12%;
+}
+
+.lists {
+	margin-top: 35px;
+}
+
+.dv {
+	position: absolute;
+	z-index: 5;
+	font-size: 20px;
+	color: #555;
+	line-height: 35px;
+	padding: 15px;
+	background: rgb(205, 239, 206);
+	width: 95%;
+	text-indent: 2em;
+	margin: 0.5em 0px;
+	letter-spacing: 0px;
+	line-height: 24px;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
+
+.dv p {
+	text-indent: 2em;
+	margin: 0.5em 0px;
+	letter-spacing: 0px;
+	line-height: 24px;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
+
+.ft {
+	position: absolute;
+	top: 6%;
+	right: 1%;
+	width: 25%;
+	height: 4%;
+	background: #cacaca;
+	font-size: 20px;
+	z-index: 10;
+	align-content: center;
+}
+
+.ft span {
+	margin: 2px 2px 2px 2px;
+	width: 45%;
+}
+
+#claosedv {
+	color: blue;
+}
+
+#gotop {
+	color: red;
+}
+
+#tops {
+	width: 100%;
+	height: 30px;
+	background: #cacaca;
+	text-align: center;
+	line-height: 30px;
+}
+
+.sticky {
+	position: fixed;
+	top: 5px;
+	animation: thedrop 1s 1;
+	-moz-animation: thedrop 1s 1;
+	-webkit-animation: thedrop 1s 1;
+	z-index: 500;
+}
+
+.ctt {
+	width: 100%;
+	height: 30px;
+	background: rgb(205, 239, 206);
+}
+</style>
+<script type="text/javascript" th:src="@{/js/jquery-1.6.4.min.js}"></script>
+<script type="text/javascript"
+	th:src="@{/js/jquery.scrollTo-1.4.2-min.js}"></script>
+<script type="text/javascript" th:src="@{/js/waypoints.min.js}"></script>
+<script type="text/javascript" th:inline="javascript">	
+	var classvalue = /*[[${className}]]*/ "";
+	var orderby = /*[[${orderby}]]*/ "";
+	var indexl = 0;
+
+	$(document).ready(function() {
+	
+		
+		$("li").bind("click",function(){
+			 var tid = $(this).attr("data-id");
+			  
+		});
+		$("#gotop").bind("click",function(){
+			document.body.scrollTop = document.documentElement.scrollTop = 0;
+		});
+		
+		var nav_container = $("#tops");
+		var nav = $("nav");
+		
+		var top_spacing = 5;
+		var waypoint_offset = 50;
+		nav_container.waypoint({
+			handler: function(event, direction) {
+				if (direction == 'down') {
+					nav_container.css({ 'height':nav.outerHeight() });		
+					nav.stop().addClass("sticky").css("top",-nav.outerHeight()).animate({"top":top_spacing});					
+				} else {
+				
+					nav_container.css({ 'height':'auto' });
+					nav.stop().removeClass("sticky").css("top",nav.outerHeight()+waypoint_offset).animate({"top":""});		
+				}	
+			},
+			offset: function() {
+				return -nav.outerHeight()-waypoint_offset;
+			}
+		});
+	});
+
+	
+
+	function closedv(){
+		//document.body.scrollTop = window.pageYOffset = document.documentElement.scrollTop=indexl;
+		$("#content").html('');
+		$("#content").hide();
+		//$("#gotop").text('顶部');
+		//$("#tops").show();
+	}
+	
+        
+
+</script>
+</head>
+
+<body>
+	<div id="tops">
+		<nav>
+			<form action="" method="POST">
+				 <select name="orderby" id="txtorder">
+					<option value="">--排序--</option>
+					<option value="1">标题正序</option>
+					<option value="2">标题倒序</option>
+					<option value="3">时间正序</option>
+					<option value="4">时间倒序</option>
+				</select> <input type="text" name="titlelike" value=""
+					th:value="${titlelike}" />
+				<button type="submit">查询</button>
+				<button type="button" id="gotop">顶部</button>
+			</form>
+		</nav>
+	</div>
+	<div class="lists">
+		记录数:<span th:text="${videolist.size()}"></span>
+	</div>
+	<ul>
+		<li th:each="video,tindex : ${videolist}" th:text="${video.fileName} +'('+${video.fileType}+')'"
+			th:attr="data-id=${video.videoId}"></li>
+	</ul>
+	<div class="dv" id="content" style="display: none"></div>
+</body>
+</html>

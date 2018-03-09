@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.modules.tieba.mapper.TiebaMapper">
+  <resultMap id="BaseResultMap" type="com.example.modules.tieba.entity.Tieba">
+    <id column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="tieba_id" jdbcType="VARCHAR" property="tiebaId" />
+    <result column="tieba_name" jdbcType="VARCHAR" property="tiebaName" />
+    <result column="first_class" jdbcType="VARCHAR" property="firstClass" />
+    <result column="second_class" jdbcType="VARCHAR" property="secondClass" />
+    <result column="tieba_url" jdbcType="VARCHAR" property="tiebaUrl" />
+    <result column="tieba_info" jdbcType="VARCHAR" property="tiebaInfo" />
+    <result column="tieba_zt_num" jdbcType="VARCHAR" property="tiebaZtNum" />
+    <result column="tieba_tz_num" jdbcType="VARCHAR" property="tiebaTzNum" />
+    <result column="tieba_people_num" jdbcType="VARCHAR" property="tiebaPeopleNum" />
+    <result column="is_fetch" jdbcType="VARCHAR" property="isFetch" />
+    <result column="last_fetch_time" jdbcType="TIMESTAMP" property="lastFetchTime" />
+    <result column="first_fetch_time" jdbcType="TIMESTAMP" property="firstFetchTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t_id, tieba_id, tieba_name, first_class, second_class, tieba_url, tieba_info, tieba_zt_num, 
+    tieba_tz_num, tieba_people_num, is_fetch, last_fetch_time, first_fetch_time, create_time
+  </sql>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="tId"  parameterType="com.example.modules.tieba.entity.Tieba">
+    insert into tieba
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="tiebaId != null">
+        tieba_id,
+      </if>
+      <if test="tiebaName != null">
+        tieba_name,
+      </if>
+      <if test="firstClass != null">
+        first_class,
+      </if>
+      <if test="secondClass != null">
+        second_class,
+      </if>
+      <if test="tiebaUrl != null">
+        tieba_url,
+      </if>
+      <if test="tiebaInfo != null">
+        tieba_info,
+      </if>
+      <if test="tiebaZtNum != null">
+        tieba_zt_num,
+      </if>
+      <if test="tiebaTzNum != null">
+        tieba_tz_num,
+      </if>
+      <if test="tiebaPeopleNum != null">
+        tieba_people_num,
+      </if>
+      <if test="isFetch != null">
+        is_fetch,
+      </if>
+      <if test="lastFetchTime != null">
+        last_fetch_time,
+      </if>
+      <if test="firstFetchTime != null">
+        first_fetch_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tId != null">
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="tiebaId != null">
+        #{tiebaId,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaName != null">
+        #{tiebaName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstClass != null">
+        #{firstClass,jdbcType=VARCHAR},
+      </if>
+      <if test="secondClass != null">
+        #{secondClass,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaUrl != null">
+        #{tiebaUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaInfo != null">
+        #{tiebaInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaZtNum != null">
+        #{tiebaZtNum,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaTzNum != null">
+        #{tiebaTzNum,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaPeopleNum != null">
+        #{tiebaPeopleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="isFetch != null">
+        #{isFetch,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFetchTime != null">
+        #{lastFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstFetchTime != null">
+        #{firstFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.modules.tieba.entity.Tieba">
+    update tieba
+    <set>
+      <if test="tiebaId != null">
+        tieba_id = #{tiebaId,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaName != null">
+        tieba_name = #{tiebaName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstClass != null">
+        first_class = #{firstClass,jdbcType=VARCHAR},
+      </if>
+      <if test="secondClass != null">
+        second_class = #{secondClass,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaUrl != null">
+        tieba_url = #{tiebaUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaInfo != null">
+        tieba_info = #{tiebaInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaZtNum != null">
+        tieba_zt_num = #{tiebaZtNum,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaTzNum != null">
+        tieba_tz_num = #{tiebaTzNum,jdbcType=VARCHAR},
+      </if>
+      <if test="tiebaPeopleNum != null">
+        tieba_people_num = #{tiebaPeopleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="isFetch != null">
+        is_fetch = #{isFetch,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFetchTime != null">
+        last_fetch_time = #{lastFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstFetchTime != null">
+        first_fetch_time = #{firstFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+</mapper>

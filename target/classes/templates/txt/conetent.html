@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" th:href="@{/css/reset.css}">
+		<link rel="stylesheet" th:href="@{/css/txtread.css}">
+	</head>
+	<body>
+	    
+		<div id="sjid" class="subject">
+		    
+		    <div class="m-artical-action">
+		        <div class="artical-action-mid" id="action_mid"></div>
+		    </div>
+		    
+		    <div id="topid" class="top" style="display:none;">
+		        <div class="icon-back"></div>
+		        <div class="nav-title">返回书架</div>
+		    </div>
+		    <div id="bottomid" class="bottom" style="display:none;">
+		        <div class="itemm" id="catalog_button">
+		            <div class="item">
+		                <div class="icon-menu"></div>
+		                <div class="icon-text">目录</div>
+		            </div>
+		        </div>
+		        <div class="itemm" id="typeface_button">
+		            <div class="item">
+		                <div class="icon-ft" id="ift"></div>
+		                <div class="icon-text">字体</div>
+		            </div>
+		        </div>
+		        <div class="itemm" id="pattern_button">
+		            <div class="item" id="day_icon" style="display:none;">
+		                <div class="icon-day"></div>
+		                <div class="icon-text">白天</div>
+		            </div>
+		            <div class="item" id="night_icon">
+		                <div class="icon-night"></div>
+		                <div class="icon-text">夜间</div>
+		            </div>
+		        </div>
+		    </div>
+		    <div id="titid"></div>
+		    <div id="ctid" class="content" th:text="${content}">
+		        <!--章节内容-->
+		    </div>
+		    <div class="button">
+		        <ul class="button-tab">
+		            <li id="prev">上一章</li>
+		            <li id="next">下一章</li>
+		        </ul>
+		    </div>
+		    <div class="nav-pannel-bk fc" style="display:none;"></div>
+		    <div class="nav-pannel fc" id="font-container" style="display:none;">
+		        <div class="child-mod">
+		            <span>字号</span>
+		            <button id="large-font" class="font-size-button">大</button>
+		            <button id="small-font" class="font-size-button">小</button>
+		        </div>
+		        <div class="child-mod">
+		            <span>背景</span>
+		            <div class="bk-container" id="btna" style="background:#f7eee5;">
+		                <div class="bk-container-current" id="btna-a" style="display: none;"></div>
+		            </div>
+		            <div class="bk-container" id="btnb" style="background:#e9dfc7;">
+		                <div class="bk-container-current" id="btnb-b" style="display: none;"></div>
+		            </div>
+		            <div class="bk-container" id="btnc" style="background:#a4a4a4;">
+		                <div class="bk-container-current" id="btnc-c" style="display: none;"></div>
+		            </div>
+		            <div class="bk-container" id="btnd" style="background:#cdefce;margin-right:7px;">
+		                <div class="bk-container-current" id="btnd-d" style="display: none;"></div>
+		            </div>
+		            <div class="bk-container" id="btne" style="background:#283548;">
+		                <div class="bk-container-current" id="btne-e" style="display: none;"></div>
+		            </div>
+		        </div>
+		    </div>
+		</div>	
+		<script type="text/javascript" th:src="@{/js/zepto.min.js}"></script>
+		<script type="text/javascript">
+			window.jQuery = $;
+		</script>
+		<script type="text/javascript" th:src="@{/js/jquery.base64.js}"></script>
+		<script type="text/javascript" th:src="@{/js/jquery.jsonp.js}"></script>
+		<script type="text/javascript" th:src="@{/js/txtread.js}"></script>
+
+	</body>
+</html>

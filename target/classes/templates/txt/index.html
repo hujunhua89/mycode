@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" th:href="@{/css/reset.css}">
+<title>helloWord</title>
+<style type="text/css">
+li {
+	cursor: pointer;
+	height: 30px;
+}
+
+ul {
+	margin-top: 10px;
+}
+
+input {
+	height: 25px;
+	width: 30%;
+}
+
+select {
+	width: 18%;
+	height: 25px;
+}
+
+.tops button {
+	height: 25px;
+	width: 12%;
+}
+
+.lists {
+	margin-top: 35px;
+}
+
+.dv {
+	position: absolute;
+	z-index: 5;
+	font-size: 20px;
+	color: #555;
+	line-height: 35px;
+	padding: 15px;
+	background: rgb(205, 239, 206);
+	width: 95%;
+	text-indent: 2em;
+	margin: 0.5em 0px;
+	letter-spacing: 0px;
+	line-height: 24px;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
+
+.dv p {
+	text-indent: 2em;
+	margin: 0.5em 0px;
+	letter-spacing: 0px;
+	line-height: 24px;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
+
+.ft {
+	position: absolute;
+	top: 6%;
+	right: 1%;
+	width: 25%;
+	height: 4%;
+	background: #cacaca;
+	font-size: 20px;
+	z-index: 10;
+	align-content: center;
+}
+
+.ft span {
+	margin: 2px 2px 2px 2px;
+	width: 45%;
+}
+
+#claosedv {
+	color: blue;
+}
+
+#gotop {
+	color: red;
+}
+
+#tops {
+	width: 100%;
+	height: 30px;
+	background: #cacaca;
+	text-align: center;
+	line-height: 30px;
+}
+
+.sticky {
+	position: fixed;
+	top: 5px;
+	animation: thedrop 1s 1;
+	-moz-animation: thedrop 1s 1;
+	-webkit-animation: thedrop 1s 1;
+	z-index: 500;
+}
+
+.ctt {
+	width: 100%;
+	height: 30px;
+	background: rgb(205, 239, 206);
+}
+</style>
+<script type="text/javascript" th:src="@{/js/jquery-1.6.4.min.js}"></script>
+<script type="text/javascript"
+	th:src="@{/js/jquery.scrollTo-1.4.2-min.js}"></script>
+<script type="text/javascript" th:src="@{/js/waypoints.min.js}"></script>
+<script type="text/javascript" th:inline="javascript">	
+	var classvalue = /*[[${className}]]*/ "";
+	var orderby = /*[[${orderby}]]*/ "";
+	var indexl = 0;
+	var flag = window.location.pathname.substring(window.location.pathname.lastIndexOf("/")+1);
+	$(document).keyup(function(e) { 
+			switch(e.keyCode) {
+			 	case 27:
+			 		closedv();
+					break;
+				 case 96:
+					 closedv();
+					break;
+				 case 107:
+					 addcfszie();
+					break;
+				 case 109:
+					 minuscfszie();
+					break;
+			 }
+	}) ;
+	$(document).ready(function() {
+		$("#txtclass").val(classvalue);
+		$("#txtorder").val(orderby);
+		$('li[data-r="Y"]').css("color","blue");
+		$("li").bind("click",function(){
+			 var tid = $(this).attr("data-id");
+			 $.ajax({
+					type : "GET",
+					url : "/txt/get/"+flag+"/"+tid,
+					xhrFields : {withCredentials:true},
+					success : function(data) {
+						//$("#tops").hide();
+						$("#gotop").text('关闭');
+						$("#content").html(data.content);
+					}
+				},);
+			 $(this).css("color","blue");
+			 $(this).attr("data-r","Y");
+			 var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+			 $("#content").css("top",scrollTop)
+			 $("#content").show();
+			  document.getElementById("content").addEventListener('touchstart', touchSatrt,false);  
+	          document.getElementById("content").addEventListener('touchmove', touchMove,false);  
+	          document.getElementById("content").addEventListener('touchend', touchEnd,false);  
+		});
+		$("#gotop").bind("click",function(){
+			if($(this).text()=='关闭'){
+				closedv();
+			}else{
+				document.body.scrollTop = document.documentElement.scrollTop = 0;
+			}
+		});
+		$("#hider").bind("click",function(){
+			$('li[data-r="Y"]').hide();
+		});
+		$("#showr").bind("click",function(){
+			var vl = $(this).text();
+			$('li[data-r="Y"]').show();
+		});
+		$("#content").bind("click",function(){
+			//closedv();
+		});
+		var nav_container = $("#tops");
+		var nav = $("nav");
+		
+		var top_spacing = 5;
+		var waypoint_offset = 50;
+		nav_container.waypoint({
+			handler: function(event, direction) {
+				if (direction == 'down') {
+					nav_container.css({ 'height':nav.outerHeight() });		
+					nav.stop().addClass("sticky").css("top",-nav.outerHeight()).animate({"top":top_spacing});					
+				} else {
+				
+					nav_container.css({ 'height':'auto' });
+					nav.stop().removeClass("sticky").css("top",nav.outerHeight()+waypoint_offset).animate({"top":""});		
+				}	
+			},
+			offset: function() {
+				return -nav.outerHeight()-waypoint_offset;
+			}
+		});
+	});
+	function addcfszie(){
+		var fz = $("#content p").css("font-size");
+		fz = fz.substr(0,2);
+		var lh = $("#content p").css("line-height");
+		lh = lh.substr(0,2);
+		$("#content").css("font-size",(Number(fz)+4)+'px');
+		$("#content p").css("line-height",(Number(lh)+4)+'px');
+	}
+	
+	function minuscfszie(){
+		var fz = $("#content p").css("font-size");
+		fz = fz.substr(0,2);
+		var lh = $("#content p").css("line-height");
+		lh = lh.substr(0,2);
+		$("#content").css("font-size",(Number(fz)+4)+'px');
+		$("#content p").css("line-height",(Number(lh)+4)+'px');
+	}
+	function closedv(){
+		//document.body.scrollTop = window.pageYOffset = document.documentElement.scrollTop=indexl;
+		$("#content").html('');
+		$("#content").hide();
+		$("#gotop").text('顶部');
+		//$("#tops").show();
+	}
+	
+	var startY = 0; // 初始位置
+	var lastY = 0; // 上一次位置
+	var startX = 0; // 初始位置
+	var lastX = 0; // 上一次位置
+	/**
+	 * 用于缓动的变量
+	 */
+	var lastMoveTime = 0;
+	var lastMoveStart = 0;
+	var stopInertiaMove = false; // 是否停止缓动
+        function touchSatrt(e){//触摸
+        	 lastY = startY = e.touches[0].pageY;
+        	 lastX = startX = e.touches[0].pageX;
+        	    /**
+        	     * 缓动代码
+        	     */
+        	    lastMoveStart = lastY;
+        	    lastMoveTime = e.timeStamp || Date.now();
+        	    stopInertiaMove = true;
+        }
+        function touchMove(e){//滑动          
+             //e.preventDefault();
+             //e.target.style.left = parseFloat(x)+parseFloat(left_index)+"px";
+            //inner.style.webkitTransform = 'translate(' + 0+ 'px, ' + y + 'px)';  //也可以用css3的方式     
+            //e.target.style.top=aboveY+y+"px"; //这一句中的aboveY是inner上次滑动后的位置 
+            var nowY = e.touches[0].pageY;
+			var moveY = nowY - lastY;
+			var contentTop = e.target.style.top;
+			// 设置top值移动content
+			e.target.style.top = (parseInt(contentTop) + moveY) + 'px';
+			lastY = nowY;
+			var nowTime = e.timeStamp || Date.now();
+			stopInertiaMove = true;
+			if(nowTime - lastMoveTime > 300) {
+			    lastMoveTime = nowTime;
+			    lastMoveStart = nowY;
+			}
+        }
+        function touchEnd(e){//手指离开屏幕
+           // e.preventDefault();
+            //console.info(startX+":"+startY);
+            //console.info(x+":xy:"+y);
+            //if((x>100||x<-100)&&(y<50&&y>-50)){
+           	// 	closedv();
+           // }
+            var touch=e.changedTouches[0];
+            var nowY = touch.pageY;
+            var nowX = touch.pageX;
+            var moveY = nowY - lastY;
+            var moveX = nowX - lastX;
+            var mys =nowY - startY;
+            if(moveX>100||moveX<-100){
+               	 closedv();
+               	 return;
+            }
+            console.info(moveX+":xy:"+mys);
+            var contentTop = content.style.top;
+            var contentY = (parseInt(contentTop) + moveY);
+            // 设置top值移动content
+            content.style.top =  contentY + 'px';
+            lastY = nowY;
+            /**
+             * 缓动代码
+             */
+            var nowTime = e.timeStamp || Date.now();
+            var v = (nowY - lastMoveStart) / (nowTime - lastMoveTime); //最后一段时间手指划动速度
+            var obj =e.target;
+            stopInertiaMove = false;
+            (function(v, startTime, contentY,obj) {
+                var dir = v > 0 ? -1 : 1; //加速度方向
+                var deceleration = dir*0.0006;
+                var duration = v / deceleration; // 速度消减至0所需时间
+                var dist = v * duration / 2; //最终移动多少
+                function inertiaMove() {
+                    if(stopInertiaMove) return;
+                    var nowTime = e.timeStamp || Date.now();
+                    var t = nowTime-startTime;
+                    var nowV = v + t*deceleration;
+                    // 速度方向变化表示速度达到0了
+                    if(dir*nowV < 0) {
+                        return;
+                    }
+                    var moveY = (v + nowV)/2 * t;
+                    obj.style.top = (contentY + moveY) + "px";
+                    setTimeout(inertiaMove, 10);
+                }
+                inertiaMove();
+            })(v, nowTime, contentY,obj);
+         }
+
+</script>
+</head>
+
+<body>
+	<div id="tops">
+		<nav>
+			<form action="" method="POST">
+				<select name="className" id="txtclass">
+					<option value="">--请选择--</option>
+					<option value="乱伦">乱伦</option>
+					<option value="人妻">人妻</option>
+					<option value="技巧">技巧</option>
+					<option value="校园">校园</option>
+					<option value="武侠">武侠</option>
+					<option value="笑话">笑话</option>
+					<option value="都市">都市</option>
+					<option value="另类">另类</option>
+				</select> <select name="orderby" id="txtorder">
+					<option value="">--排序--</option>
+					<option value="1">标题正序</option>
+					<option value="2">标题倒序</option>
+					<option value="3">时间正序</option>
+					<option value="4">时间倒序</option>
+				</select> <input type="text" name="titlelike" value=""
+					th:value="${titlelike}" />
+				<button type="submit">查询</button>
+				<button type="button" id="gotop">顶部</button>
+			</form>
+		</nav>
+	</div>
+	<div class="lists">
+		记录数:<span th:text="${txtlist.size()}"></span>
+		<button id="hider">隐藏已读</button>
+		<button id="showr">显示已读</button>
+	</div>
+	<ul>
+		<li th:each="txt,tindex : ${txtlist}" th:text="${txt.title}"
+			th:attr="data-id=${txt.txtId},data-r=${readinfo.get(txt.txtId)}"></li>
+	</ul>
+	<div class="dv" id="content" style="display: none"></div>
+</body>
+</html>

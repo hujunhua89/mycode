@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.modules.media.mapper.LocalVideoMapper">
+  <resultMap id="BaseResultMap" type="com.example.modules.media.entity.LocalVideo">
+    <id column="video_id" jdbcType="VARCHAR" property="videoId" />
+    <result column="root_path" jdbcType="VARCHAR" property="rootPath" />
+    <result column="relative_path" jdbcType="VARCHAR" property="relativePath" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="file_size" jdbcType="VARCHAR" property="fileSize" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="backup_path" jdbcType="VARCHAR" property="backupPath" />
+    <result column="backup_subtitle_path" jdbcType="VARCHAR" property="backupSubtitlePath" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="md5_code" jdbcType="VARCHAR" property="md5Code" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    video_id, root_path, relative_path, file_name, file_type, file_size, sub_title, backup_path, 
+    backup_subtitle_path, create_time, md5_code, status, remark
+  </sql>
+  <insert id="insertSelective" parameterType="com.example.modules.media.entity.LocalVideo">
+    insert into local_video
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="videoId != null">
+        video_id,
+      </if>
+      <if test="rootPath != null">
+        root_path,
+      </if>
+      <if test="relativePath != null">
+        relative_path,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="fileType != null">
+        file_type,
+      </if>
+      <if test="fileSize != null">
+        file_size,
+      </if>
+      <if test="subTitle != null">
+        sub_title,
+      </if>
+      <if test="backupPath != null">
+        backup_path,
+      </if>
+      <if test="backupSubtitlePath != null">
+        backup_subtitle_path,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="md5Code != null">
+        md5_code,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="videoId != null">
+        #{videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="rootPath != null">
+        #{rootPath,jdbcType=VARCHAR},
+      </if>
+      <if test="relativePath != null">
+        #{relativePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="backupPath != null">
+        #{backupPath,jdbcType=VARCHAR},
+      </if>
+      <if test="backupSubtitlePath != null">
+        #{backupSubtitlePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="md5Code != null">
+        #{md5Code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.modules.media.entity.LocalVideo">
+    update local_video
+    <set>
+      <if test="rootPath != null">
+        root_path = #{rootPath,jdbcType=VARCHAR},
+      </if>
+      <if test="relativePath != null">
+        relative_path = #{relativePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        file_type = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        file_size = #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        sub_title = #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="backupPath != null">
+        backup_path = #{backupPath,jdbcType=VARCHAR},
+      </if>
+      <if test="backupSubtitlePath != null">
+        backup_subtitle_path = #{backupSubtitlePath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="md5Code != null">
+        md5_code = #{md5Code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.modules.custom.mapper.CustomTxtMapper">
+  <resultMap id="BaseResultMap" type="com.example.modules.custom.entity.CustomTxt">
+    <id column="txt_id" jdbcType="INTEGER" property="txtId" />
+    <result column="txt_url" jdbcType="VARCHAR" property="txtUrl" />
+    <result column="txt_class" jdbcType="VARCHAR" property="txtClass" />
+    <result column="author_name" jdbcType="VARCHAR" property="authorName" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="date_str" jdbcType="VARCHAR" property="dateStr" />
+    <result column="is_fetch" jdbcType="VARCHAR" property="isFetch" />
+    <result column="last_fetch_time" jdbcType="TIMESTAMP" property="lastFetchTime" />
+    <result column="first_fetch_time" jdbcType="TIMESTAMP" property="firstFetchTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="orderby" jdbcType="INTEGER" property="orderby" />
+    <result column="mark_flag" jdbcType="VARCHAR" property="markFlag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    txt_id, txt_url, txt_class, author_name, title, content, date_str, is_fetch, last_fetch_time, 
+    first_fetch_time, create_time, orderby, mark_flag, remark
+  </sql>
+  <insert id="insertSelective" parameterType="com.example.modules.custom.entity.CustomTxt">
+    insert into ${tableName}
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="txtId != null">
+        txt_id,
+      </if>
+      <if test="txtUrl != null">
+        txt_url,
+      </if>
+      <if test="txtClass != null">
+        txt_class,
+      </if>
+      <if test="authorName != null">
+        author_name,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="dateStr != null">
+        date_str,
+      </if>
+      <if test="isFetch != null">
+        is_fetch,
+      </if>
+      <if test="lastFetchTime != null">
+        last_fetch_time,
+      </if>
+      <if test="firstFetchTime != null">
+        first_fetch_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="orderby != null">
+        orderby,
+      </if>
+      <if test="markFlag != null">
+        mark_flag,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="txtId != null">
+        #{txtId,jdbcType=INTEGER},
+      </if>
+      <if test="txtUrl != null">
+        #{txtUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="txtClass != null">
+        #{txtClass,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null">
+        #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="dateStr != null">
+        #{dateStr,jdbcType=VARCHAR},
+      </if>
+      <if test="isFetch != null">
+        #{isFetch,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFetchTime != null">
+        #{lastFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstFetchTime != null">
+        #{firstFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderby != null">
+        #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="markFlag != null">
+        #{markFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.modules.custom.entity.CustomTxt">
+    update ${tableName}
+    <set>
+      <if test="txtUrl != null">
+        txt_url = #{txtUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="txtClass != null">
+        txt_class = #{txtClass,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null">
+        author_name = #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="dateStr != null">
+        date_str = #{dateStr,jdbcType=VARCHAR},
+      </if>
+      <if test="isFetch != null">
+        is_fetch = #{isFetch,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFetchTime != null">
+        last_fetch_time = #{lastFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstFetchTime != null">
+        first_fetch_time = #{firstFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderby != null">
+        orderby = #{orderby,jdbcType=INTEGER},
+      </if>
+      <if test="markFlag != null">
+        mark_flag = #{markFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where txt_id = #{txtId,jdbcType=INTEGER}
+  </update>
+</mapper>

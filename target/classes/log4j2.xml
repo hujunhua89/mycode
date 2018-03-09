@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%-5level[%d{MM-dd HH:mm:ss.SSS}] [%t]  %logger{36} - %msg%n" />
+		</Console>
+	</appenders>
+	<loggers>
+		<logger name="org.thymeleaf"  level="error">
+			<appender-ref ref="Console" />
+		</logger>
+		<root level="info">
+			<appender-ref ref="Console" />
+		</root>
+	</loggers>
+</configuration>

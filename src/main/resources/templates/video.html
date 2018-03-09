@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>helloWord</title>
+<link th:href="@{/mediaelement/build/mediaelementplayer.css}">
+<script type="text/javascript" th:src="@{jquery-3.2.1.min.js}"></script>
+</head>
+
+<body>
+	<h1>Hello World!</h1>
+	<div style="width: 80%;height: auto;margin-left: 10%;">
+	<video style="width: 400px;height: 300px;" controls="controls" > 
+	<source src="http://localhost:8090/video/test1.mp4" type="video/mp4" >
+		您的浏览器不支持 video 标签。</video>
+	</div>
+	<br />
+</body>
+</html>

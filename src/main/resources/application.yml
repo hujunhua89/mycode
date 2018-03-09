@@ -1,0 +1,55 @@
+server:
+    port: 8080
+    session-timeout: 1800
+    connection-timeout: 30000
+    max-connections: 600
+    max-threads: 600
+spring:
+    redis:
+        database: 0
+        host: 127.0.0.1
+        port: 6679
+        password: c0b88d47754f79ad2b7c26cec6417326
+        timeout: 500
+        pool:
+            max-active: 100
+            max-wait: -1
+            max-idle: 20
+            min-idle: 1
+    thymeleaf:
+        cache: false
+        encoding: utf-8
+        mode: HTML
+    session:
+        store-type: redis
+mybatis:
+    mapperLocations: classpath:mybatis/*/mapper/*.xml
+    configuration:
+        default-fetch-size: 100
+        default-statement-timeout: 30
+datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    master:
+        url: jdbc:mysql://127.0.0.1:3306/mydemo?useSSL=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+        username: root
+        password: 
+        driver-class-name: com.mysql.jdbc.Driver
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        validationQuery: select 1
+        testWhileIdle: true
+    slave:
+        url: jdbc:mysql://127.0.0.1:3306/mydemo?useSSL=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+        username: root
+        password: 
+        driver-class-name: com.mysql.jdbc.Driver
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        validationQuery: select 1
+        testWhileIdle: true
+error:
+    path: /error

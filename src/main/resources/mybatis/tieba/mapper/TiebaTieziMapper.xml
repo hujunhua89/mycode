@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.modules.tieba.mapper.TiebaTieziMapper">
+  <resultMap id="BaseResultMap" type="com.example.modules.tieba.entity.TiebaTiezi">
+    <id column="tz_id" jdbcType="VARCHAR" property="tzId" />
+    <result column="author_id" jdbcType="VARCHAR" property="authorId" />
+    <result column="author_name" jdbcType="VARCHAR" property="authorName" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="post_s_date" jdbcType="VARCHAR" property="postSDate" />
+    <result column="post_date" jdbcType="TIMESTAMP" property="postDate" />
+    <result column="reply_s_date" jdbcType="VARCHAR" property="replySDate" />
+    <result column="reply_date" jdbcType="TIMESTAMP" property="replyDate" />
+    <result column="reply_num" jdbcType="VARCHAR" property="replyNum" />
+    <result column="replyer_id" jdbcType="VARCHAR" property="replyerId" />
+    <result column="replyer_name" jdbcType="VARCHAR" property="replyerName" />
+    <result column="auditer_id" jdbcType="VARCHAR" property="auditerId" />
+    <result column="auditer_name" jdbcType="VARCHAR" property="auditerName" />
+    <result column="is_top" jdbcType="VARCHAR" property="isTop" />
+    <result column="is_fetch" jdbcType="VARCHAR" property="isFetch" />
+    <result column="last_fetch_time" jdbcType="TIMESTAMP" property="lastFetchTime" />
+    <result column="first_fetch_time" jdbcType="TIMESTAMP" property="firstFetchTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tz_id, author_id, author_name, title, content, post_s_date, post_date, reply_s_date, 
+    reply_date, reply_num, replyer_id, replyer_name, auditer_id, auditer_name, is_top, 
+    is_fetch, last_fetch_time, first_fetch_time, create_time
+  </sql>
+  <insert id="insertSelective" parameterType="com.example.modules.tieba.entity.TiebaTiezi">
+    insert into ${tableName}
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tzId != null">
+        tz_id,
+      </if>
+      <if test="authorId != null">
+        author_id,
+      </if>
+      <if test="authorName != null">
+        author_name,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="postSDate != null">
+        post_s_date,
+      </if>
+      <if test="postDate != null">
+        post_date,
+      </if>
+      <if test="replySDate != null">
+        reply_s_date,
+      </if>
+      <if test="replyDate != null">
+        reply_date,
+      </if>
+      <if test="replyNum != null">
+        reply_num,
+      </if>
+      <if test="replyerId != null">
+        replyer_id,
+      </if>
+      <if test="replyerName != null">
+        replyer_name,
+      </if>
+      <if test="auditerId != null">
+        auditer_id,
+      </if>
+      <if test="auditerName != null">
+        auditer_name,
+      </if>
+      <if test="isTop != null">
+        is_top,
+      </if>
+      <if test="isFetch != null">
+        is_fetch,
+      </if>
+      <if test="lastFetchTime != null">
+        last_fetch_time,
+      </if>
+      <if test="firstFetchTime != null">
+        first_fetch_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tzId != null">
+        #{tzId,jdbcType=VARCHAR},
+      </if>
+      <if test="authorId != null">
+        #{authorId,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null">
+        #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="postSDate != null">
+        #{postSDate,jdbcType=VARCHAR},
+      </if>
+      <if test="postDate != null">
+        #{postDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replySDate != null">
+        #{replySDate,jdbcType=VARCHAR},
+      </if>
+      <if test="replyDate != null">
+        #{replyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyNum != null">
+        #{replyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="replyerId != null">
+        #{replyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="replyerName != null">
+        #{replyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditerId != null">
+        #{auditerId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditerName != null">
+        #{auditerName,jdbcType=VARCHAR},
+      </if>
+      <if test="isTop != null">
+        #{isTop,jdbcType=VARCHAR},
+      </if>
+      <if test="isFetch != null">
+        #{isFetch,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFetchTime != null">
+        #{lastFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstFetchTime != null">
+        #{firstFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.modules.tieba.entity.TiebaTiezi">
+    update tieba_tiezi
+    <set>
+      <if test="authorId != null">
+        author_id = #{authorId,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null">
+        author_name = #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="postSDate != null">
+        post_s_date = #{postSDate,jdbcType=VARCHAR},
+      </if>
+      <if test="postDate != null">
+        post_date = #{postDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replySDate != null">
+        reply_s_date = #{replySDate,jdbcType=VARCHAR},
+      </if>
+      <if test="replyDate != null">
+        reply_date = #{replyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyNum != null">
+        reply_num = #{replyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="replyerId != null">
+        replyer_id = #{replyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="replyerName != null">
+        replyer_name = #{replyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditerId != null">
+        auditer_id = #{auditerId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditerName != null">
+        auditer_name = #{auditerName,jdbcType=VARCHAR},
+      </if>
+      <if test="isTop != null">
+        is_top = #{isTop,jdbcType=VARCHAR},
+      </if>
+      <if test="isFetch != null">
+        is_fetch = #{isFetch,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFetchTime != null">
+        last_fetch_time = #{lastFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstFetchTime != null">
+        first_fetch_time = #{firstFetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where tz_id = #{tzId,jdbcType=VARCHAR}
+  </update>
+</mapper>
