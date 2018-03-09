@@ -1,3 +1,9 @@
 # mycode
-this is hujunhua code bak
-随意观摩
+### 说明
+代码随笔
+```
+  fdasfdasfdas
+
+```
+我的|地城
+---|---
